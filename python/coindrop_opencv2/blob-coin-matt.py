@@ -5,9 +5,13 @@ import cv2
 import numpy as np;
 
 # Read image
-img = cv2.imread('capture/image40.jpg')
+# img = cv2.imread('capture/image40-schnitt.jpg')
+original = cv2.imread('capture/image40.jpg')
+img = cv2.resize(original,None,fx=2, fy=2, interpolation = cv2.INTER_LINEAR)
+
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 th, thresh = cv2.threshold(gray, 100, 255, cv2.THRESH_TOZERO_INV)
+
 # ret, thresh = cv2.threshold(gray,200,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
 # Otsu's thresholding after Gaussian filtering
@@ -31,12 +35,12 @@ params.maxThreshold = 200
 
 ## Filter by Area.
 params.filterByArea = True
-params.minArea = 20
-params.maxArea = 600
+params.minArea = 80
+params.maxArea = 300
 
 ## Filter by Circularity
 params.filterByCircularity = True
-params.minCircularity = 0.50
+params.minCircularity = 0.89
 
 ## Filter by Convexity
 params.filterByConvexity = True
@@ -78,5 +82,6 @@ im_with_keypoints = cv2.drawKeypoints(thresh, keypoints, np.array([]), (0,0,255)
 
 # Show blobs
 cv2.imshow("Keypoints", im_with_keypoints)
+cv2.imwrite('resized-test.jpg',im_with_keypoints)
 cv2.waitKey(0)
 

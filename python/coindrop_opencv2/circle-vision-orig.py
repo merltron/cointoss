@@ -5,7 +5,7 @@ import numpy as np
 d_red = cv2.cv.RGB(150, 55, 65)
 l_red = cv2.cv.RGB(250, 200, 200)
 
-orig = cv2.imread("demo/circle-detection-opencv/images/c.jpg")
+orig = cv2.imread("D:\_GIT\cointoss\python\coindrop_opencv2\capture\image40.jpg")
 img = orig.copy()
 img2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
